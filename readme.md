@@ -2,7 +2,6 @@
 
 ```
 yarn add crontab-node
-
 ```
 
 ## Example

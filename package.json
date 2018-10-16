@@ -15,7 +15,7 @@
     "type": "git",
     "url": "https://github.com/luoage/crontab-node.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cron-parser": "^2.6.0",
     "moment": "^2.22.2"
