@@ -1,0 +1,23 @@
+{
+  "name": "crontab-node",
+  "version": "1.0.0",
+  "description": "help crontab",
+  "main": "schedule.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "crontab",
+    "node"
+  ],
+  "author": "luoage@msn.cn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luoage/crontab-node.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cron-parser": "^2.6.0",
+    "moment": "^2.22.2"
+  }
+}
