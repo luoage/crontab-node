@@ -13,6 +13,7 @@ module.exports = function (expression) {
 
   const options = { currentDate: new Date() };
   const current = parser.parseExpression(expression, options).prev();
+  const currentDate = new Date(current.toString());
 
-  return current.toString() === moment().toString();
+  return moment(currentDate).toString() === moment().toString();
 };
