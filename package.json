@@ -4,7 +4,7 @@
   "description": "help crontab",
   "main": "schedule.js",
   "scripts": {
-    "test": "node test"
+    "test": "node test/test.js"
   },
   "keywords": [
     "crontab",
