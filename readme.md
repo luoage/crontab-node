@@ -6,6 +6,8 @@ yarn add crontab-node
 
 crontab-node目的是配合linux的crontab使用, 需要每分钟执行一次，时间触发后才会执行函数方法
 
+![kernel](./example.png)
+
 ## Example
 
 c.js
