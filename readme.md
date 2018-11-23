@@ -4,18 +4,11 @@
 yarn add crontab-node
 ```
 
-## Example1
+crontab-node目的是配合linux的crontab使用, 需要每分钟执行一次，时间触发后才会执行函数方法
 
-```
-const crontab = require('crontab-node');
+## Example
 
-setInterval(() => {
-  console.log(new Date());
-
-  crontab('* * * * *') && console.log('hit success !');
-}, 1000);
-```
-## Example2
+c.js
 
 ```
 const crontab = require('crontab-node');
@@ -30,13 +23,18 @@ const promise = new Promise((resolve, reject) => {
     }, 1);
 });
 
-setInterval(() => {
-  console.log(new Date());
+console.log(new Date());
 
-  crontab('*/2 * * * *', undefined, () => {
-    return promise.then(() => {
-      console.log('I am callback, just excute once');
-    });
-  });
-}, 1000);
+crontab('*/2 * * * *', undefined, () => {
+	return promise.then(() => {
+		console.log('I am callback, just excute once');
+	});
+});
+
+```
+
+crontab -l
+
+```
+* * * * * node path/c.js
 ```
