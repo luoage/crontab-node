@@ -19,7 +19,11 @@ setInterval(() => {
 
 ```
 const crontab = require('crontab-node');
+const eventEmitter = require('crontab-node/eventEmitter');
 
+eventEmitter.on('crontab-node exit', () => {
+	process.exit(0);
+});
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
@@ -29,11 +33,10 @@ const promise = new Promise((resolve, reject) => {
 setInterval(() => {
   console.log(new Date());
 
-  crontab('*/2 * * * *', undefined, function() {
+  crontab('*/2 * * * *', undefined, () => {
     return promise.then(() => {
       console.log('I am callback, just excute once');
     });
   });
 }, 1000);
-
 ```

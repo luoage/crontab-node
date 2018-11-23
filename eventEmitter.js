@@ -19,7 +19,7 @@ eventEmitter.on('crontab-node end', () => {
   tickCount--;
 
   if (tickCount <=0 ) {
-    process.exit(0);
+    eventEmitter.emit('crontab-node exit');
   }
 });
 
