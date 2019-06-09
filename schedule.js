@@ -25,8 +25,8 @@ module.exports = function (expression, cb, options) {
   const date = options.date;
   const args = options.args || {};
 
-  const options = { currentDate: new Date() };
-  const current = parser.parseExpression(expression, options).prev();
+  const exOpts = { currentDate: new Date() };
+  const current = parser.parseExpression(expression, exOpts).prev();
   const currentDate = new Date(current.toString());
   const isExec = moment(currentDate).format('YYYY-MM-DD HH:mm') === moment(date).format('YYYY-MM-DD HH:mm');
 
