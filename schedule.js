@@ -16,7 +16,7 @@ const eventEmitter = require('./eventEmitter');
  *
  * @return boolean
  */
-module.exports = function (expression, date, cb) {
+module.exports = function (expression, cb, { date, args }) {
   if ((expression || '').toString().split(/ +/).length !== 5) {
     throw new Error('invalid expression');
   }
@@ -31,7 +31,7 @@ module.exports = function (expression, date, cb) {
 
     process.nextTick(async () => {
       try {
-        await cb();
+        await cb.apply(this, [].concat(args));
       } catch(e) {
         console.error(e);
       }
