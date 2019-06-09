@@ -1,6 +1,6 @@
 {
   "name": "crontab-node",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "help crontab",
   "main": "schedule.js",
   "scripts": {
