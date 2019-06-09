@@ -11,15 +11,19 @@ const eventEmitter = require('./eventEmitter');
  * 定时器
  *
  * @param {string} expression 定时器表达式
- * @param {mixed} [moment] 接收内容
  * @param {function|promise} [cb] 同步方法，或者promise对象
+ * @param {Object} options} { date, args }
  *
  * @return boolean
  */
-module.exports = function (expression, cb, { date, args }) {
+module.exports = function (expression, cb, options) {
   if ((expression || '').toString().split(/ +/).length !== 5) {
     throw new Error('invalid expression');
   }
+  options = options || {};
+
+  const date = options.date;
+  const args = options.args || {};
 
   const options = { currentDate: new Date() };
   const current = parser.parseExpression(expression, options).prev();
