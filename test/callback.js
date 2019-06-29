@@ -10,7 +10,7 @@ const promise = new Promise((resolve, reject) => {
 setInterval(() => {
   console.log(new Date());
 
-  crontab('*/2 * * * *', undefined, () => {
+  crontab('*/2 * * * *', () => {
     return promise.then(() => {
       console.log('I am callback, just excute once');
     });

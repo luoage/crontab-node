@@ -12,7 +12,7 @@ const eventEmitter = require('./eventEmitter');
  *
  * @param {string} expression 定时器表达式
  * @param {function|promise} [cb] 同步方法，或者promise对象
- * @param {Object} options} { date, args }
+ * @param {Object} options} { date, args, errorFn }
  *
  * @return boolean
  */
@@ -24,6 +24,7 @@ module.exports = function (expression, cb, options) {
 
   const date = options.date;
   const args = options.args || {};
+  const errorFn = options.errorFn || console.error;
 
   const exOpts = { currentDate: new Date() };
   const current = parser.parseExpression(expression, exOpts).prev();
@@ -34,13 +35,16 @@ module.exports = function (expression, cb, options) {
     eventEmitter.emit('crontab-node start');
 
     process.nextTick(async () => {
+      let err;
+
       try {
         await cb.apply(this, [].concat(args));
       } catch(e) {
-        console.error(e);
+        err = e;
       }
 
       eventEmitter.emit('crontab-node end');
+      err && errorFn(err);
     });
   }
 
