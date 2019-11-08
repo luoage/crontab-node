@@ -23,7 +23,7 @@ module.exports = function (expression, cb, options) {
   options = options || {};
 
   const date = options.date;
-  const args = options.args || {};
+  const args = options.args;
   const errorFn = options.errorFn || console.error;
 
   const exOpts = { currentDate: new Date() };
