@@ -23,7 +23,7 @@ module.exports = function (expression, cb, options) {
   options = options || {};
 
   const date = options.date;
-  const args = options.args;
+  const args = options.args || {};
   const errorFn = options.errorFn || console.error;
 
   const exOpts = { currentDate: new Date() };
@@ -33,19 +33,14 @@ module.exports = function (expression, cb, options) {
 
   if (isExec && typeof cb === 'function') {
     eventEmitter.emit('crontab-node start');
-
-    process.nextTick(async () => {
-      let err;
-
-      try {
-        await cb.apply(this, [].concat(args));
-      } catch(e) {
-        err = e;
-      }
-
-      eventEmitter.emit('crontab-node end');
-      err && errorFn(err);
-    });
+    Promise.resolve().then(() => {
+        return cb(...args);
+      }).then(() => {
+        eventEmitter.emit('crontab-node end');
+      }).catch((err) => {
+        eventEmitter.emit('crontab-node end');
+        errorFn(err);
+      });
   }
 
   return isExec;

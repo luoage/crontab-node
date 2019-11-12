@@ -4,12 +4,9 @@
  * @author luoage@msn.cn
  */
 const Events = require('events');
+const eventEmitter = new Events();
 
-class EventEmitter extends Events {};
-
-const eventEmitter = new EventEmitter();
-
-let tickCount = 0;
+var tickCount = 0;
 
 eventEmitter.on('crontab-node start', () => {
   tickCount++;
